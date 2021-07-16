@@ -1,0 +1,21 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-top: 100px;
+}
+.resizer {
+  min-width: 5px;
+  width: 5px;
+  max-width: 5px;
+  background-color: #bebebe;
+  height: 100%;
+  cursor: e-resize;
+}
