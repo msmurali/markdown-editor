@@ -1,17 +1,11 @@
 import React from "react";
 import "./editor.css";
 
-const Editor = ({ width, widthHandler }) => {
+const Editor = ({ width, markdownHandler }) => {
   return (
     <>
       <div className="editor" style={{ width: width }}>
-        {width < 200 ? (
-          <div className="opener" onClick={widthHandler}>
-            &gt;
-          </div>
-        ) : (
-          <textarea className="textarea"></textarea>
-        )}
+        <textarea className="textarea" onChange={markdownHandler}></textarea>
       </div>
     </>
   );

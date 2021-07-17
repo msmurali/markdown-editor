@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./preview.css";
+import ReactMarkdown from "react-markdown";
+import { MarkdownContext } from "../../App";
 
-const Preview = ({ width, widthHandler }) => {
+const Preview = ({ width }) => {
+  const markdown = useContext(MarkdownContext);
+
   return (
     <div className="preview" style={{ width: width }}>
-      {width < 200 ? (
-        <div className="opener" onClick={widthHandler}>
-          &lt;
-        </div>
-      ) : (
-        <div></div>
-      )}
+      <ReactMarkdown children={markdown} className="markdown" />
     </div>
   );
 };

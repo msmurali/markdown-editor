@@ -4,17 +4,21 @@ import Preview from "./components/preview/preview.jsx";
 import Editor from "./components/editor/editor.jsx";
 import React, { useEffect, useState } from "react";
 
+export const MarkdownContext = React.createContext();
+
 function App() {
   const [width, setWidth] = useState({
     editorWidth: "50%",
     previewWidth: "50%",
   });
 
+  const [markdown, setMarkdown] = useState("");
+
   useEffect(() => {
     let isKeyDown = false;
     let resizer = document.querySelector(".resizer");
     let main = document.querySelector(".main");
-    let resizerWidth = 5;
+    let resizerWidth = 10;
 
     resizer.addEventListener("dblclick", widthHandler);
 
@@ -36,15 +40,14 @@ function App() {
       let previewWidth = main.clientWidth - editorWidth;
 
       if (!(editorWidth > 200)) {
-        editorWidth = 20;
-        previewWidth = main.clientWidth - 20 - resizerWidth;
+        editorWidth = 0;
+        previewWidth = main.clientWidth - resizerWidth;
       }
 
       if (!(previewWidth > 200)) {
-        previewWidth = 20;
-        editorWidth = main.clientWidth - 20 - resizerWidth;
+        previewWidth = 0;
+        editorWidth = main.clientWidth - resizerWidth;
       }
-
       if (isKeyDown) {
         setWidth({
           editorWidth: `${100 * (editorWidth / main.clientWidth)}%`,
@@ -53,6 +56,13 @@ function App() {
       }
     });
   }, []);
+
+  const markdownHandler = () => {
+    const textarea = document.querySelector(".textarea");
+    console.log(textarea);
+    console.log(textarea.value);
+    setMarkdown(textarea.value);
+  };
 
   const widthHandler = () => {
     const main = document.querySelector(".main");
@@ -66,9 +76,11 @@ function App() {
     <div className="App">
       <Header />
       <main className="main">
-        <Editor width={width.editorWidth} widthHandler={widthHandler} />
-        <div className="resizer"></div>
-        <Preview width={width.previewWidth} widthHandler={widthHandler} />
+        <Editor width={width.editorWidth} markdownHandler={markdownHandler} />
+        <div className="resizer" onClick={widthHandler}></div>
+        <MarkdownContext.Provider value={markdown}>
+          <Preview width={width.previewWidth} />
+        </MarkdownContext.Provider>
       </main>
     </div>
   );
