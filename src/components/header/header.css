@@ -1,8 +1,78 @@
 .header {
   width: 100%;
-  height: 100px;
+  min-height: 100px;
+  background-color: white;
+  padding: 0 1rem;
   position: fixed;
   top: 0;
   left: 0;
   box-shadow: 0px 0px 10px #44444423;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+.logo {
+  height: 100%;
+}
+.btn-container {
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 0.5rem;
+  background-color: transparent;
+  transition: transform 0.1s ease-in-out;
+  border: 1px solid #000e520e;
+  border-radius: 5px;
+  margin: clamp(0.2rem, 2vw, 0.5rem);
+  cursor: pointer;
+}
+.btn:active {
+  transform: translateY(2px);
+}
+
+.file-name {
+  border: 2px solid #e8e8e8;
+  border-radius: 5px;
+  padding: 0.2em 0;
+  margin-left: auto;
+}
+.file-name > input {
+  border: none;
+  outline: none;
+  width: clamp(80px, 10vw, 200px);
+  margin: 0.2em;
+  padding: 0 0.1em;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: normal;
+  font-family: Poppins, Montserrat, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+.download {
+  margin: 1rem;
+}
+.download-btn {
+  width: clamp(20px, 2vw, 30px);
+  height: clamp(20px, 2vw, 30px);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+.download-btn:active {
+  transform: translateY(2px);
+}
+
+@media (max-width: 530px) {
+  .logo {
+    display: none;
+  }
 }

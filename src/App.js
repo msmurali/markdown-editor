@@ -59,8 +59,6 @@ function App() {
 
   const markdownHandler = () => {
     const textarea = document.querySelector(".textarea");
-    console.log(textarea);
-    console.log(textarea.value);
     setMarkdown(textarea.value);
   };
 
